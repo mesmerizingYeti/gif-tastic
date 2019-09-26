@@ -1,3 +1,19 @@
+body {
+    background-color: #8ACDEA;
+    min-height: 100vh;
+}
+
+h1 {
+    color: #EDE6F2;
+    font-size: 2em;
+}
+
+.navbar {
+    background-color: #746D75;
+    color: #EDE6F2;
+    border-bottom: 2px solid #EDE6F2;
+}
+
 .navbar-brand {
     margin-right: 15px;
     margin-left: 10px;
@@ -15,6 +31,13 @@
 .search-btn {
     margin-right: 5px;
     margin-bottom: 5px;
+    background-color: #8C4843;
+    color: #EDE6F2;
+}
+
+.search-btn:hover {
+    color: white;
+    background-color: rgb(156, 87, 82);
 }
 
 .gif {
@@ -34,6 +57,14 @@
     margin-right: 0 !important;
 }
 
+.gif-container {
+    transition: all 1s;
+}
+
+.gif-container.pre-animation {
+    opacity: 0;
+}
+
 #brand-icon-container {
     align-items: center;
     display: flex;
@@ -46,4 +77,8 @@
 
 #add-input {
     padding: 2px;
+}
+
+#add-btn {
+    background-color: #8ACDEA;
 }

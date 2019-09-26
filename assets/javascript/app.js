@@ -2,19 +2,19 @@ document.querySelector('body').addEventListener('click', e => {
     // Add search button using text input
     if (e.target.id === 'add-btn') {
         e.preventDefault()
-        document.querySelector('#btn-container').innerHTML += `<a class="button is-info search-btn">${document.querySelector('#add-input').value}</a>`
+        document.querySelector('#btn-container').innerHTML += `<a class="button search-btn">${document.querySelector('#add-input').value}</a>`
         document.querySelector('#add-input').value = ''
     }
     // Search for gifs using button name
-    if (e.target.className === 'button is-info search-btn') {
-        fetch(`https://api.giphy.com/v1/gifs/search?api_key=3SAWLXxeqLkPwaU2IUJhyQ6EAswy7DgM&q=${e.target.textContent}&limit=10&rating=pg-13`)
+    if (e.target.className === 'button search-btn') {
+        fetch(`https://api.giphy.com/v1/gifs/search?api_key=3SAWLXxeqLkPwaU2IUJhyQ6EAswy7DgM&q=${e.target.textContent}&limit=10&rating=PG`)
             .then (r => r.json())
             .then(({ data }) => {
                 console.log(data)
                 data.forEach(({ title, images }) => {
                     console.log(images)
-                    document.querySelector('#gif-container').innerHTML += `
-                    <div class="column is-one-third">
+                    document.querySelector('#gif-container').innerHTML = `
+                    <div class="column is-one-third bounceIn delay-5s slower">
                         <div class="card">
                             <div class="card-image">
                                 <figure class="image">
@@ -22,7 +22,7 @@ document.querySelector('body').addEventListener('click', e => {
                                 </figure>
                             </div>
                         </div>
-                    </div>`
+                    </div>` + document.querySelector('#gif-container').innerHTML
                 })
             })
             .catch(e => console.error(e))
