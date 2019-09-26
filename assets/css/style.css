@@ -1,3 +1,8 @@
+.navbar-brand {
+    margin-right: 15px;
+    margin-left: 10px;
+}
+
 .navbar-end {
     padding: 10px;
     align-items: center;
@@ -20,6 +25,19 @@
 .card {
     width: fit-content;
     margin: 10px;
+    -webkit-box-shadow: -7px 11px 25px -9px rgba(0, 0, 0, 1);
+    -moz-box-shadow: -7px 11px 25px -9px rgba(0, 0, 0, 1);
+    box-shadow: -7px 11px 25px -9px rgba(0, 0, 0, 1);
+}
+
+.control {
+    margin-right: 0 !important;
+}
+
+#brand-icon-container {
+    align-items: center;
+    display: flex;
+    margin-left: 10px;
 }
 
 #add-input-container {
@@ -27,12 +45,5 @@
 }
 
 #add-input {
-    margin-right: 10px;
     padding: 2px;
-    height: 2em;
-}
-
-#add-btn {
-    margin-left: 10px;
-    height: 2.4em;
 }

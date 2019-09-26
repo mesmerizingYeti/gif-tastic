@@ -14,16 +14,17 @@
 <body>
     <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <a class="navbar-item" href="https://bulma.io">
-                <img src="https://bulma.io/images/bulma-logo.png"
-                    alt="Bulma: Free, open source, & modern CSS framework based on Flexbox" width="112" height="28">
-            </a>
+            <div id="brand-icon-container">
+                <span class="icon">
+                    <i class="fas fa-bug fa-3x"></i>
+                </span>
+            </div>
         </div>
         <div class="navbar-start">
             <!-- navbar items -->
-            <a class="navbar-item">
-                Gif-Tastic
-            </a>
+            <span class="navbar-item">
+                <h1>Gif-Tastic</h1>
+            </span>
         </div>
 
         <div class="navbar-end">
@@ -32,11 +33,13 @@
                 <form>
                     <div class="field has-addons is-grouped">
                         <div class="control">
-                            <input id="add-input" class="input" type="text" placeholder="Find Gifs">
+                            <input id="add-input" class="input" type="text" placeholder="Search For Gifs">
                         </div>
                         <div class="control">
                             <button id="add-btn" class="button is-info">
-                                Search
+                                <span class="icon">
+                                    <i class="fas fa-search"></i>
+                                </span>
                             </button>
                         </div>
                     </div>
@@ -62,6 +65,7 @@
             </div>
         </div>
     </section>
+    <script src="https://kit.fontawesome.com/ea94617e7d.js" crossorigin="anonymous"></script>
     <script src="./assets/javascript/app.js"></script>
 
 </body>
