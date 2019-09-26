@@ -1,15 +1,19 @@
 let favorites = []
+// Timeout to prevent favorite clicking bug
 let timeout = false
 
 const setupFavorites = _ => {
+    // Check if local favorites exist
     if (localStorage.getItem('favorite-gifs')) {
+        // Grab local favorites
         JSON.parse(localStorage.getItem('favorite-gifs')).forEach(x => {
             favorites.push(x)
         })
     } else {
+        // Create empty local favorites
         localStorage.setItem('favorite-gifs', JSON.stringify([]))
     }
-
+    // Display favorites
     favorites.forEach(({ dataset, alt }) => {
         document.querySelector('#gif-container').innerHTML = `
             <div class="column is-one-third bounceIn delay-5s slower">
@@ -29,20 +33,23 @@ const setupFavorites = _ => {
 
 document.querySelector('body').addEventListener('click', e => {
     // Add search button using text input
-    if (e.target.id === 'add-btn' 
-    || e.target.className === 'fas fa-search' 
-    || e.target.id === 'search-icon'
+    if (e.target.id === 'add-btn'               // Button for form
+    || e.target.className === 'fas fa-search'   // Search icon occasionally clicked
+    || e.target.id === 'search-icon'            // Search icon container occasionally clicked
     && document.querySelector('#add-input').value) {
             e.preventDefault()
+            // Add button
             document.querySelector('#btn-container').innerHTML += `<a class="button search-btn">${document.querySelector('#add-input').value}</a>`
+            // Reset input to empty
             document.querySelector('#add-input').value = ''
     }
-    // Search for gifs using button name
+    // Fetch gifs using button name
     if (e.target.className === 'button search-btn') {
         fetch(`https://api.giphy.com/v1/gifs/search?api_key=3SAWLXxeqLkPwaU2IUJhyQ6EAswy7DgM&q=${e.target.textContent}&limit=10&rating=PG`)
             .then(r => r.json())
             .then(({ data }) => {
                 data.forEach(({ title, images }) => {
+                    // Display currently selected gif
                     document.querySelector('#gif-container').innerHTML = `
                     <div class="column is-one-third bounceIn delay-5s slower">
                         <div class="card">
@@ -64,7 +71,7 @@ document.querySelector('body').addEventListener('click', e => {
     if (e.target.className === 'gif') {
         e.target.src = e.target.src === e.target.dataset.still ? e.target.dataset.animated : e.target.dataset.still
     }
-
+    // Add gif to favorites
     if (e.target.className === 'far fa-star' && !timeout) {
         favorites.push({
             dataset: e.target.parentNode.parentNode.children[0].dataset,
@@ -72,13 +79,15 @@ document.querySelector('body').addEventListener('click', e => {
         })
         localStorage.setItem('favorite-gifs', JSON.stringify(favorites))
         e.target.className = 'fas fa-star'
+        // Timeout to prevent accidental double clicking
         timeout = true
         setTimeout(_ => {
             timeout = false
         }, 100)
     }
-
+    // Remove gif from favorites
     if (e.target.className === 'fas fa-star' && !timeout) {
+        // Find gif in favorites using still url
         let index = 0
         favorites.forEach(({ dataset }, i) => {
             if (e.target.parentNode.parentNode.children[0].dataset.still === dataset.still) {
@@ -88,6 +97,7 @@ document.querySelector('body').addEventListener('click', e => {
         favorites.splice(index, 1)
         localStorage.setItem('favorite-gifs', JSON.stringify(favorites))
         e.target.className = 'far fa-star'
+        // Timeout to prevent accidental double clicking
         timeout = true
         setTimeout(_ => {
             timeout = false
