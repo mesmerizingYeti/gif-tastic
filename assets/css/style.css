@@ -12,6 +12,16 @@
     margin-bottom: 5px;
 }
 
+.gif {
+    max-width: 300px;
+    max-height: 300px;
+}
+
+.card {
+    width: fit-content;
+    margin: 10px;
+}
+
 #add-input-container {
     margin-bottom: 0;
 }

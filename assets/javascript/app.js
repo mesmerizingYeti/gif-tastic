@@ -11,11 +11,18 @@ document.querySelector('body').addEventListener('click', e => {
             .then (r => r.json())
             .then(({ data }) => {
                 console.log(data)
-                data.forEach(({ images }) => {
+                data.forEach(({ title, images }) => {
                     console.log(images)
                     document.querySelector('#gif-container').innerHTML += `
-                        <img src="${images.original_still.url}" alt="${e.target.textContent}" class="gif" data-still="${images.original_still.url}" data-animated="${images.original.url}">
-                    `
+                    <div class="column is-one-third">
+                        <div class="card">
+                            <div class="card-image">
+                                <figure class="image">
+                                    <img src="${images.original_still.url}" alt="${e.target.textContent}" class="gif" data-still="${images.original_still.url}" data-animated="${images.original.url}">
+                                </figure>
+                            </div>
+                        </div>
+                    </div>`
                 })
             })
             .catch(e => console.error(e))
