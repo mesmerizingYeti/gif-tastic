@@ -1,6 +1,7 @@
 body {
     background-color: #8ACDEA;
     min-height: 100vh;
+    user-select: none;
 }
 
 h1 {
@@ -53,16 +54,19 @@ h1 {
     box-shadow: -7px 11px 25px -9px rgba(0, 0, 0, 1);
 }
 
+.card:hover {
+    border: 2px solid #EDE6F2;
+}
+
 .control {
     margin-right: 0 !important;
+    color: #9E643C;
 }
 
-.gif-container {
-    transition: all 1s;
-}
-
-.gif-container.pre-animation {
-    opacity: 0;
+.icon.favorite {
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 #brand-icon-container {
