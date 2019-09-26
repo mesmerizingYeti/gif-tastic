@@ -9,7 +9,7 @@ const setupFavorites = _ => {
     } else {
         localStorage.setItem('favorite-gifs', JSON.stringify([]))
     }
-    
+
     favorites.forEach(({ dataset, alt }) => {
         document.querySelector('#gif-container').innerHTML = `
             <div class="column is-one-third bounceIn delay-5s slower">
@@ -29,19 +29,20 @@ const setupFavorites = _ => {
 
 document.querySelector('body').addEventListener('click', e => {
     // Add search button using text input
-    if (e.target.id === 'add-btn') {
-        e.preventDefault()
-        document.querySelector('#btn-container').innerHTML += `<a class="button search-btn">${document.querySelector('#add-input').value}</a>`
-        document.querySelector('#add-input').value = ''
+    if (e.target.id === 'add-btn' 
+    || e.target.className === 'fas fa-search' 
+    || e.target.id === 'search-icon'
+    && document.querySelector('#add-input').value) {
+            e.preventDefault()
+            document.querySelector('#btn-container').innerHTML += `<a class="button search-btn">${document.querySelector('#add-input').value}</a>`
+            document.querySelector('#add-input').value = ''
     }
     // Search for gifs using button name
     if (e.target.className === 'button search-btn') {
         fetch(`https://api.giphy.com/v1/gifs/search?api_key=3SAWLXxeqLkPwaU2IUJhyQ6EAswy7DgM&q=${e.target.textContent}&limit=10&rating=PG`)
             .then(r => r.json())
             .then(({ data }) => {
-                console.log(data)
                 data.forEach(({ title, images }) => {
-                    console.log(images)
                     document.querySelector('#gif-container').innerHTML = `
                     <div class="column is-one-third bounceIn delay-5s slower">
                         <div class="card">
@@ -76,12 +77,15 @@ document.querySelector('body').addEventListener('click', e => {
             timeout = false
         }, 100)
     }
-    
+
     if (e.target.className === 'fas fa-star' && !timeout) {
-        favorites.splice(favorites.indexOf({
-            dataset: e.target.parentNode.parentNode.children[0].dataset,
-            alt: e.target.parentNode.parentNode.children[0].alt
-        }), 1)
+        let index = 0
+        favorites.forEach(({ dataset }, i) => {
+            if (e.target.parentNode.parentNode.children[0].dataset.still === dataset.still) {
+                index = i
+            }
+        })
+        favorites.splice(index, 1)
         localStorage.setItem('favorite-gifs', JSON.stringify(favorites))
         e.target.className = 'far fa-star'
         timeout = true
