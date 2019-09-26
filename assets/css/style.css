@@ -1,0 +1,28 @@
+.navbar-end {
+    padding: 10px;
+    align-items: center;
+}
+
+.container {
+    padding: 20px;
+}
+
+.search-btn {
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+#add-input-container {
+    margin-bottom: 0;
+}
+
+#add-input {
+    margin-right: 10px;
+    padding: 2px;
+    height: 2em;
+}
+
+#add-btn {
+    margin-left: 10px;
+    height: 2.4em;
+}

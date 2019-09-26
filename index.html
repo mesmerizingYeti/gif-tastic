@@ -1,27 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Document</title>
 </head>
+
 <body>
-    
-    <div id="form-container">
-        <form>
-            <label for="add">Add Search Button</label>
-            <input type="text" name="add" id="add-input">
-            <button id="add-btn">Add Button</button>
-        </form>
-    </div>
-    <div id="btns-container"></div>
-    <div id="gifs-container"></div>
-    
+    <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="https://bulma.io">
+                <img src="https://bulma.io/images/bulma-logo.png"
+                    alt="Bulma: Free, open source, & modern CSS framework based on Flexbox" width="112" height="28">
+            </a>
+        </div>
+        <div class="navbar-start">
+            <!-- navbar items -->
+            <a class="navbar-item">
+                Gif-Tastic
+            </a>
+        </div>
+
+        <div class="navbar-end">
+            <!-- navbar items -->
+            <div class="navbar-item">
+                <form>
+                    <div class="field has-addons is-grouped">
+                        <div class="control">
+                            <input id="add-input" class="input" type="text" placeholder="Find Gifs">
+                        </div>
+                        <div class="control">
+                            <button id="add-btn" class="button is-info">
+                                Search
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- <div class="navbar-item">
+                <p class="control has-addons">
+                    <input id="add-input" class="input" type="text" placeholder="Find Gifs">
+                    <button id="add-btn" class="button">
+                        Search
+                    </button>
+                </p>
+            </div> -->
+        </div>
+    </nav>
+    <section>
+        <div class="container">
+            <div class="columns">
+                <div id="gif-container" class="column is-four-fifths"></div>
+                <div id="btn-container" class="column"></div>
+            </div>
+        </div>
+    </section>
 
     <script src="./assets/javascript/app.js"></script>
 
 </body>
+
 </html>
